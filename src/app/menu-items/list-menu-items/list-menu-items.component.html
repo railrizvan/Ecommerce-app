@@ -1,0 +1,60 @@
+<div class="panel panel-success col-sm-4" *ngFor="let mi of menuItems">
+    <div class="panel-heading">
+        <h2 class="panel-title">{{ mi.name }}</h2>
+    </div>
+
+    <div class="panel-body">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-6">
+                    <img [src]="mi.photoPath" class="image" />
+                </div>
+
+                <div class="col-xs-6">
+                    <div class="row">
+                        <div class="col-xs-4">Name</div>
+                        <div class="col-xs-8">: {{ mi.name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">Price</div>
+                        <div class="col-xs-8">: {{ mi.price }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <hr />
+                            <label for="qty">Qty: </label>
+                            <input
+                                #myInput
+                                id="qty"
+                                type="number"
+                                min="1"
+                                max="20"
+                                value="1"
+                                class="inputnumber"
+                            /><br />
+
+                            <a (click)="addCartData(mi.id, +myInput.value)"
+                                >Add to the cart</a
+                            ><br />
+                            <span id="result"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer" *ngIf="ifLogin()">
+        <a class="glyphicon glyphicon-screenshot" (click)="clearCartData()"></a>
+        <a
+            class="glyphicon glyphicon-floppy-saved"
+            href="\create"
+            title="Add Menu Item"
+        ></a>
+        <a
+            class="glyphicon glyphicon-floppy-remove"
+            (click)="remove(mi.id)"
+            title="Remove Menu Item"
+        ></a>
+    </div>
+</div>

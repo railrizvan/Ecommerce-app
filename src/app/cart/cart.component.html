@@ -1,0 +1,40 @@
+<div class="container" *ngFor="let i of items; let idx = index">
+    <div class="panel panel-succes">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-1">
+                    {{ i.menuItem['name'] }}
+                </div>
+                <div class="col-xs-3">
+                    <input
+                        #box
+                        type="number"
+                        [value]="i.quantity"
+                        min="1"
+                        max="20"
+                        (change)="onchange(idx, +box.value)"
+                    />
+                    <!-- x  {{ i.quantity }} -->
+                </div>
+                <div class="col-xs-5">
+                    <span> Amount: ${{ i.quantity * i.menuItem.price }} </span>
+                </div>
+                <div class="col-xs-3">
+                    <button
+                        type="button"
+                        (click)="remove(idx)"
+                        class="btn btn-info"
+                    >
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-footer">
+    <b>Total: ${{ getTotal() }}</b
+    ><br /><br />
+    <a *ngIf="!isCartEmpty" class="checkout_link" href="\checkout">Checkout</a>
+</div>
